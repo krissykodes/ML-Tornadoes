@@ -1,9 +1,9 @@
 import os
-from sqlalchemy.orm import Session
-from sqlalchemy import create_engine, func, desc
-from sqlalchemy.ext.automap import automap_base
+# from sqlalchemy.orm import Session
+# from sqlalchemy import create_engine, func, desc
+# from sqlalchemy.ext.automap import automap_base
 from datetime import date
-import sqlalchemy as sa
+# import sqlalchemy as sa
 from datetime import datetime
 import tensorflow as tf
 import pickle
@@ -14,26 +14,26 @@ from flask import (
     jsonify,
     request,
     redirect)
-from sqlalchemy.sql.expression import extract
-from sqlalchemy.sql.schema import Index
+# from sqlalchemy.sql.expression import extract
+# from sqlalchemy.sql.schema import Index
 
-from config import password
+# from config import password
 
 filename = 'tornado_model.h5'
 loaded_model = tf.keras.models.load_model(filename)
 
 # connection_string = f"postgres:{password}@localhost:5432/Tornado"
 # engine = create_engine(f'postgresql://{connection_string}')
-engine = create_engine("postgresql://postgres:postgres@localhost:5432/tornado")
+# engine = create_engine("postgresql://postgres:postgres@localhost:5432/tornado")
 
-# reflect an existing database into a new model
-Base = automap_base()
-# reflect the tables
-Base.prepare(engine, reflect=True)
+# # reflect an existing database into a new model
+# Base = automap_base()
+# # reflect the tables
+# Base.prepare(engine, reflect=True)
 
-print(Base.classes.keys())
+# print(Base.classes.keys())
 
-data = Base.classes.tornado_data
+# data = Base.classes.tornado_data
 
 #################################################
 # Flask Setup
