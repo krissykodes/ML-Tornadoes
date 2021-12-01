@@ -1,9 +1,9 @@
 import os
-from sqlalchemy.orm import Session
-from sqlalchemy import create_engine, func, desc
-from sqlalchemy.ext.automap import automap_base
+# from sqlalchemy.orm import Session
+# from sqlalchemy import create_engine, func, desc
+# from sqlalchemy.ext.automap import automap_base
 from datetime import date
-import sqlalchemy as sa
+# import sqlalchemy as sa
 from datetime import datetime
 import tensorflow as tf
 import pickle
@@ -22,8 +22,8 @@ from flask import (
 filename = 'tornado_model.h5'
 loaded_model = tf.keras.models.load_model(filename)
 
-# # connection_string = f"postgres:{password}@localhost:5432/Tornado"
-# # engine = create_engine(f'postgresql://{connection_string}')
+# connection_string = f"postgres:{password}@localhost:5432/Tornado"
+# engine = create_engine(f'postgresql://{connection_string}')
 # engine = create_engine("postgresql://postgres:postgres@localhost:5432/tornado")
 
 # # reflect an existing database into a new model
@@ -51,6 +51,11 @@ def home():
 def about():
 
     return render_template("about.html")
+
+@app.route("/charts")
+def charts():
+
+    return render_template("charts.html")
 
 @app.route("/maps")
 def maps():
@@ -108,8 +113,6 @@ def model():
     scaler = pickle.load(open("scaler.sav", "rb"))
     X = scaler.transform(X)
     prediction = loaded_model.predict(X)[0][0]
-
-    prediction = prediction * 1000000
 
     prediction = "${0:,.2f}".format(prediction)
 
